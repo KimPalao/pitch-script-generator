@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 export default function Message({
   message,
-  fromApp = true
+  fromApp = false
 }: {
   message: string;
   fromApp?: boolean;

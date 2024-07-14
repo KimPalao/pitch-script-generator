@@ -2,3 +2,7 @@
   width: 52px;
   height: 52px;
 }
+
+.messageContainer>* {
+  margin-bottom: 1rem;
+}

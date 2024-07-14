@@ -15,7 +15,15 @@ export default function Prompt() {
         </div>
       </header>
       <hr className="mb-4" />
-      <Message message="What would you like to pitch about?" fromApp />
+      <div className={styles.messageContainer}>
+        <Message message="What would you like to pitch about?" fromApp />
+        <Message message="Hello! I am pitching EcoFresh, my eco-friendly packaging startup. We create eco-friendly, biodegradable packaging for the food indusstry. EcoFresh's material decomposes faster, ensuring quicker environmental benefits. It's also competitively priced." />
+        <Message message="Great, what would you like your pitch length to be in minutes? The recommended length for a pitch is 3-5 minutes." fromApp />
+        <Message message="I would like the pitch to be 3 minutes long." />
+        <Message message="Wonderful! Do you have any additional instructions or specifciations on tone or structure?" fromApp />
+        <Message message="A friendly business tone would be great. Please use simple words." />
+        <Message message="Thank you for your responses! Allow me to generate your script now." fromApp />
+      </div>
     </div>
   );
 }
