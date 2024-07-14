@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from '@/app/ui/prompt/prompt.module.css';
+import Message from "./message";
 
 export default function Prompt() {
   return (
@@ -13,7 +14,8 @@ export default function Prompt() {
           <p>Pitch Deck Creator</p>
         </div>
       </header>
-      <hr />
+      <hr className="mb-4" />
+      <Message />
     </div>
   );
 }
