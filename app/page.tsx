@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Nav from "./ui/nav";
 import Pitch from "./ui/pitch/pitch";
-import Prompt from "./ui/prompt";
+import Prompt from "./ui/prompt/prompt";
 import { Geologica } from "next/font/google";
 
 const geologica = Geologica({ subsets: ["latin"] });
