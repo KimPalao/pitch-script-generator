@@ -7,6 +7,16 @@ export default function Pitch() {
       <h1 className="text-2xl font-medium mb-4">Your Generated Pitch Script</h1>
       <Card title='Introduction' content='Good morning, everyone. My name is [Your Name], and I am the founder of EcoFresh,
           an innovative startup focused on providing eco-friendly packaging solutions.'/>
+      <Card title="Hook" />
+      <Card title="Problem Statement" />
+      <Card title="Solution" />
+      <Card title="Market Opportunity" />
+      <Card title="Business Model" />
+      <Card title="Traction" />
+      <Card title="Go-to-Market Strategy" />
+      <Card title="Team" />
+      <Card title="Financials and Projections" />
+      <Card title="Closing" />
     </div>
   );
 }
