@@ -1,0 +1,14 @@
+.fornaxLogoAiContainer {
+  width: 18px;
+  height: 18px;
+  background: #8B8EF8;
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+}
+
+.fornaxLogoAiContainer svg {
+  left: 2px;
+  top: 4px;
+  position: absolute;
+}
