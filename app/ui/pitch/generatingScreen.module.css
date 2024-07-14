@@ -1,0 +1,22 @@
+.generatingScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.loadingBar {
+  height: 32px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #F7F4FB;
+}
+
+.loadingBarProgress {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(to right, #EE7299, #8B8EF8);
+}
