@@ -3,6 +3,17 @@
   height: 52px;
 }
 
+.messageContainer {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
 .messageContainer>* {
   margin-bottom: 1rem;
+}
+
+.promptContainer {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 66px);
 }
