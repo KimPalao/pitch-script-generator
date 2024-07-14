@@ -4,7 +4,7 @@ import styles from '@/app/ui/nav.module.css';
 
 export default function Nav() {
   return (
-    <nav className="w-full flex justify-between p-4 border-b-solid border-b-2 border-gray-200">
+    <nav className="w-full hidden md:flex justify-between p-4 border-b-solid border-b-2 border-gray-200">
       <div className="flex items-center">
         <FornaxLogo />
         <h2 className={`ms-4 inline-block text-xl ${styles.pitchScriptGenerator} ${geologica.className}`}>Pitch Script Generator</h2>

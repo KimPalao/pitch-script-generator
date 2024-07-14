@@ -10,7 +10,7 @@ export default function Pitch() {
   const [generating, setGenerating] = useState(true);
 
   return (
-    <div className={`${styles.pitchContainer} bg-stone-100`}>
+    <div className={`${styles.pitchContainer} bg-stone-100 hidden md:block`}>
       <GeneratingScreen />
       <div className={`p-4 ${styles.innerContainer}`}>
         <h1 className={`text-2xl font-medium mb-4 ${geologica.className}`}>Your Generated Pitch Script</h1>

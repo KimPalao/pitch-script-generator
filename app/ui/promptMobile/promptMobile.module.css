@@ -1,0 +1,5 @@
+.promptMobileContainer {
+  min-height: 100dvh;
+  background: linear-gradient(#fff, #8B8EF866 100%),
+    linear-gradient(#fff, #EE729966 100%);
+}
