@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Nav from "./ui/nav";
-import Pitch from "./ui/pitch";
+import Pitch from "./ui/pitch/pitch";
 import Prompt from "./ui/prompt";
 import { Geologica } from "next/font/google";
 
