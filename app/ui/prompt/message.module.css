@@ -1,0 +1,37 @@
+.messageGrid {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  grid-gap: 1rem;
+}
+
+.messageAppIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background: #F7F4FB;
+}
+
+.messageUserIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background: #F7F4FB;
+}
+
+.message {
+  padding: 1rem;
+}
+
+.messageFromApp {
+  background: #F7F4FB;
+  border-radius: 1rem;
+  border-top-left-radius: 0%;
+}
+
+.messageFromUser {
+  color: white;
+  background: #8B8EF8;
+  border-radius: 1rem;
+  border-bottom-right-radius: 0%;
+  align-self: flex-end;
+}

@@ -15,7 +15,7 @@ export default function Prompt() {
         </div>
       </header>
       <hr className="mb-4" />
-      <Message />
+      <Message message="What would you like to pitch about?" fromApp />
     </div>
   );
 }
