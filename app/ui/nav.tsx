@@ -11,10 +11,10 @@ export default function Nav({ onShare, onCopy, shared = false, copied = false, e
         <FornaxLogo />
         <h2 className={`ms-4 inline-block text-xl ${styles.pitchScriptGenerator} ${geologica.className}`}>Pitch Script Generator</h2>
       </div>
-      <div>
-        <button disabled={!enabled} onClick={onShare} className="rounded-md border-2 border-gray-200 py-1 px-2 text-sm me-2">{shareText}</button>
-        <button disabled={!enabled} onClick={onCopy} className="rounded-md text-white bg-violet-950 py-1 px-2 text-sm">{copyText}</button>
-      </div>
+      {enabled && <div>
+        <button onClick={onShare} className="rounded-md border-2 border-gray-200 py-1 px-2 text-sm me-2">{shareText}</button>
+        <button onClick={onCopy} className="rounded-md text-white bg-violet-950 py-1 px-2 text-sm">{copyText}</button>
+      </div>}
     </nav>
   );
 }
