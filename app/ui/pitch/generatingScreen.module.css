@@ -19,4 +19,5 @@
   height: 100%;
   width: 50%;
   background: linear-gradient(to right, #EE7299, #8B8EF8);
+  transition: all 0.1s;
 }
