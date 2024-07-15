@@ -64,7 +64,7 @@ export default function Home() {
     <main>
       <Nav onShare={shareLink} onCopy={copyPitch} shared={shared} copied={copied} enabled={pitchId.length > 0} />
       <div className="md:grid grid-cols-2 flex-grow w-full">
-        <Pitch pitch={generatedPitch} generating={generating} pitchId={pitchId} cards={headers} />
+        <Pitch pitch={generatedPitch} generating={generating} pitchId={pitchId} cards={headers} isSection />
         <Prompt onSubmit={prompt} />
         {!Object.keys(generatedPitch).length && !generating &&
           <PromptMobile onSubmit={prompt} />

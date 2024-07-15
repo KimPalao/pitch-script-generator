@@ -7,7 +7,7 @@ import GeneratingScreen from './generatingScreen';
 import { useState } from 'react';
 import clsx from 'clsx';
 
-export default function Pitch({ pitch = {}, generating = false, pitchId = null, cards }: { pitch: { [name: string]: { content: string; time: string; }; }; generating?: boolean; pitchId?: string | null; cards?: string[]; }) {
+export default function Pitch({ pitch = {}, generating = false, pitchId = null, cards, isSection = false }: { pitch: { [name: string]: { content: string; time: string; }; }; generating?: boolean; pitchId?: string | null; cards?: string[]; isSection?: boolean; }) {
   const [shared, setShared] = useState(false);
   const shareText = shared ? 'Link Copied!' : 'Share';
 
@@ -34,10 +34,11 @@ export default function Pitch({ pitch = {}, generating = false, pitchId = null, 
       `${styles.pitchContainer} bg-stone-100 md:flex flex-col relative`,
       {
         'hidden': !Object.keys(pitch).length && !generating,
+        [styles.pitchContainerSection]: isSection
       }
     )}>
       {generating && <GeneratingScreen />}
-      <div className={`p-4 ${styles.innerContainer} flex-grow pb-16`}>
+      <div className={`p-4 ${styles.innerContainer} flex-grow pb-16 md:pb-4`}>
         <h1 className={`text-2xl font-medium mb-4 ${geologica.className}`}>Your Generated Pitch Script</h1>
         {cards.map(card => <Card title={card} key={card} content={pitch[card]?.content} time={pitch[card]?.time} />)}
       </div>
