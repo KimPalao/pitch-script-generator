@@ -16,7 +16,7 @@ export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string
     }]);
   }, []);
 
-  const [pitch, setPitch] = useState({
+  const [pitch, setPitch] = useState<{ pitch: string; minutes: string; instructions: string; file?: File | null; }>({
     pitch: '',
     minutes: '',
     instructions: '',

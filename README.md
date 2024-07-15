@@ -2,10 +2,20 @@
 
 ## Running
 
-Install the dependencies:
+Copy the `.env.example` file and fill up all the values
+
+```bash
+cp .env.example .env.local
+```
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run the server
+```bash
 npm run dev
 ```
 

@@ -18,7 +18,7 @@ export default function MessageInput({ onSubmit, onFile, disabled }: { onSubmit:
   return (
     <form onSubmit={handleSubmit} className={`${styles.messageInputContainer} flex flex-row border-solid border-2 border-gray-100`}>
       <input type="file" id="fileUpload" hidden onChange={chooseFile} />
-      <label htmlFor='fileUpload' type='button'>Upload</label>
+      <label htmlFor='fileUpload'>Upload</label>
       <span contentEditable className={`${styles.textbox} flex-grow outline-none px-2`} ref={textarea}></span>
       <button type='submit'>Send</button>
     </form>

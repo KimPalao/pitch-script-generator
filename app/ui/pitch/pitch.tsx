@@ -7,7 +7,7 @@ import GeneratingScreen from './generatingScreen';
 import { useState } from 'react';
 import clsx from 'clsx';
 
-export default function Pitch({ pitch = {}, generating = false, pitchId = null, cards, isSection = false }: { pitch: { [name: string]: { content: string; time: string; }; }; generating?: boolean; pitchId?: string | null; cards?: string[]; isSection?: boolean; }) {
+export default function Pitch({ pitch = {}, generating = false, pitchId = null, cards = [], isSection = false }: { pitch: { [name: string]: { content: string; time: string; }; }; generating?: boolean; pitchId?: string | null; cards?: string[]; isSection?: boolean; }) {
   const [shared, setShared] = useState(false);
   const shareText = shared ? 'Link Copied!' : 'Share';
 

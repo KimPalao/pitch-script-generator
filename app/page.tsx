@@ -8,8 +8,15 @@ import PromptMobile from "./ui/promptMobile/promptMobile";
 import { useState } from "react";
 import Toast from "./ui/toast";
 
+type IPitch = {
+  [name: string]: {
+    content: string;
+    time: string;
+  };
+};
+
 export default function Home() {
-  const [generatedPitch, setGeneratedPitch] = useState({});
+  const [generatedPitch, setGeneratedPitch] = useState<IPitch>({});
   const [generating, setGenerating] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [pitchId, setPitchId] = useState('');
