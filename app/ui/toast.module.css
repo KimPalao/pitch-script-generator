@@ -1,0 +1,14 @@
+.check {
+  background: linear-gradient(#EE729966, #8B8EF866 100%);
+  width: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.toast {
+  bottom: -10rem;
+}
+
+.toast.visible {
+  bottom: 1rem;
+}

@@ -6,10 +6,12 @@ import Pitch from "./ui/pitch/pitch";
 import Prompt from "./ui/prompt/prompt";
 import PromptMobile from "./ui/promptMobile/promptMobile";
 import { useState } from "react";
+import Toast from "./ui/toast";
 
 export default function Home() {
   const [generatedPitch, setGeneratedPitch] = useState({});
   const [generating, setGenerating] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; }) => {
     setGenerating(true);
@@ -24,6 +26,8 @@ export default function Home() {
     const data = await response.json();
     setGeneratedPitch(data);
     setGenerating(false);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 5000);
   };
 
   return (
@@ -36,6 +40,7 @@ export default function Home() {
           <PromptMobile onSubmit={prompt} />
         }
       </div>
+      <Toast message="Pitch script updated" visible={showToast} onDismiss={() => setShowToast(false)} />
     </main>
   );
 }
