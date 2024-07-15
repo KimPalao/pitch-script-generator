@@ -37,11 +37,34 @@ export default function Home() {
     setTimeout(() => setShowToast(false), 5000);
   };
 
+
+  const [shared, setShared] = useState(false);
+
+  const shareLink = () => {
+    navigator.clipboard.writeText(`${window.location.origin}/${pitchId}`);
+    setShared(true);
+  };
+
+  const headers = ['Introduction', 'Hook', 'Problem Statement', 'Solution', 'Market Opportunity', 'Business Model', 'Traction', 'Go-to-Market Strategy', 'Team', 'Financials and Projections', 'Closing'];
+
+  const [copied, setCopied] = useState(false);
+  const copyPitch = () => {
+    let text = ``;
+    for (const header of headers) {
+      text += `# ${header}\n\n`;
+      text += `**${generatedPitch[header]?.time}**\n\n`;
+      text += `${generatedPitch[header]?.content}\n\n`;
+    }
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+  };
+
+
   return (
     <main>
-      <Nav />
+      <Nav onShare={shareLink} onCopy={copyPitch} shared={shared} copied={copied} enabled={pitchId.length > 0} />
       <div className="md:grid grid-cols-2 flex-grow w-full">
-        <Pitch pitch={generatedPitch} generating={generating} pitchId={pitchId} />
+        <Pitch pitch={generatedPitch} generating={generating} pitchId={pitchId} cards={headers} />
         <Prompt onSubmit={prompt} />
         {!Object.keys(generatedPitch).length && !generating &&
           <PromptMobile onSubmit={prompt} />
