@@ -7,27 +7,29 @@ const openai = new OpenAI({
 
 export async function POST(request: Request) {
   const res = await request.json();
-  const { prompt, minutes, instructions } = res;
+  const { pitch, minutes, instructions } = res;
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
       {
-        role: 'user',
+        role: 'system',
         content: `
           Create a pitch script for the following prompt:
 
-          "${prompt}"
+          "${pitch}"
 
           ${minutes}
 
+          Make sure the total time of the pitch is close to the requested number of minutes.
+          
           Additional instructions: ${instructions}
-
+          
           Organise it into the following sections: Introduction, Hook, Problem Statement, Solution, Market Opportunity, Business Model, Traction, Go-to-Market Strategy, Team, Financials and Projects, and Closing.
+          
+          Include estimated time for each section. Format the time as "<seconds> seconds"
 
-          Include estimated time for each section.
-
-          Return this in json.
+          Return this in a json object where the root object's keys are the individual sections. Each key should correspond to an object with the attributes "content" and "time"
         `
       }
     ],

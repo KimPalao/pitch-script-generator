@@ -3,8 +3,59 @@ import styles from '@/app/ui/prompt/prompt.module.css';
 import Message from "./message";
 import MessageInput from "./messageInput";
 import { geologica } from "@/app/fonts";
+import { useEffect, useState } from "react";
 
-export default function Prompt() {
+export default function Prompt({ onSubmit }) {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    setMessages([{
+      message: "What would you like to pitch about?",
+      fromApp: true,
+    }]);
+  }, []);
+
+  const [pitch, setPitch] = useState({
+    pitch: '',
+    minutes: '',
+    instructions: ''
+  });
+
+  const addMessageAndRespond = (message: string) => {
+    setMessages((currentMessages) => [...currentMessages, { message, fromApp: false }]);
+    if (!pitch.pitch) {
+      setPitch({ ...pitch, pitch: message });
+      setMessages((currentMessages) =>
+        [
+          ...currentMessages,
+          { message: "Great, what would you like your pitch length to be in minutes? The recommended length for a pitch is 3-5 minutes.", fromApp: true }
+        ]);
+      return;
+    }
+    if (!pitch.minutes) {
+      setPitch({ ...pitch, minutes: message });
+      setMessages((currentMessages) =>
+        [
+          ...currentMessages,
+          { message: "Wonderful! Do you have any additional instructions or specifications on tone or structure?", fromApp: true }
+        ]);
+      return;
+    }
+    if (!pitch.instructions) {
+      setMessages((currentMessages) =>
+        [
+          ...currentMessages,
+          { message: "Thank you for your responses! Allow me to generate your script now.", fromApp: true }
+        ]);
+      setPitch({ ...pitch, instructions: message }, onSubmit.bind(null, pitch));
+      onSubmit({ ...pitch, instructions: message });
+      return;
+    }
+    if (message.trim().toLowerCase() === 'refresh') {
+      onSubmit(pitch);
+    }
+  };
+
   return (
     <div className={`${styles.promptContainer} p-4 hidden md:flex`}>
       <header className="flex flex-row mb-4">
@@ -18,15 +69,16 @@ export default function Prompt() {
       </header>
       <hr className="mb-4" />
       <div className={`${styles.messageContainer} flex-grow`}>
-        <Message message="What would you like to pitch about?" fromApp />
+        {messages.map((message, index) => <Message key={index} message={message.message} fromApp={message.fromApp} />)}
+        {/* <Message message="What would you like to pitch about?" fromApp />
         <Message message="Hello! I am pitching EcoFresh, my eco-friendly packaging startup. We create eco-friendly, biodegradable packaging for the food indusstry. EcoFresh's material decomposes faster, ensuring quicker environmental benefits. It's also competitively priced." />
         <Message message="Great, what would you like your pitch length to be in minutes? The recommended length for a pitch is 3-5 minutes." fromApp />
         <Message message="I would like the pitch to be 3 minutes long." />
         <Message message="Wonderful! Do you have any additional instructions or specifications on tone or structure?" fromApp />
         <Message message="A friendly business tone would be great. Please use simple words." />
-        <Message message="Thank you for your responses! Allow me to generate your script now." fromApp />
+        <Message message="Thank you for your responses! Allow me to generate your script now." fromApp /> */}
       </div>
-      <MessageInput />
+      <MessageInput onSubmit={addMessageAndRespond} />
     </div>
   );
 }

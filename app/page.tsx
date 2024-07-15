@@ -12,7 +12,6 @@ export default function Home() {
   const [generating, setGenerating] = useState(false);
 
   const prompt = async (pitch) => {
-    console.log(pitch);
     setGenerating(true);
     const response = await fetch('/api/prompt', {
       method: 'POST',
@@ -23,7 +22,7 @@ export default function Home() {
     });
 
     const data = await response.json();
-    setGeneratedPitch(data.pitch_script);
+    setGeneratedPitch(data);
     setGenerating(false);
   };
 
@@ -32,7 +31,7 @@ export default function Home() {
       <Nav />
       <div className="md:grid grid-cols-2 flex-grow w-full">
         <Pitch pitch={generatedPitch} generating={generating} />
-        <Prompt />
+        <Prompt onSubmit={prompt} />
         {!Object.keys(generatedPitch).length && !generating &&
           <PromptMobile onSubmit={prompt} />
         }
