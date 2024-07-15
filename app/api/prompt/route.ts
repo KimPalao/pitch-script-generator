@@ -35,5 +35,5 @@ export async function POST(request: Request) {
     ],
     response_format: { type: "json_object" },
   });
-  return Response.json(JSON.parse(response.choices[0].message.content));
+  return Response.json(JSON.parse(response.choices[0].message.content ?? ''));
 }

@@ -11,7 +11,7 @@ export default function Home() {
   const [generatedPitch, setGeneratedPitch] = useState({});
   const [generating, setGenerating] = useState(false);
 
-  const prompt = async (pitch) => {
+  const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; }) => {
     setGenerating(true);
     const response = await fetch('/api/prompt', {
       method: 'POST',

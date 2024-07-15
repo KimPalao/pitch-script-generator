@@ -3,9 +3,9 @@
 import FornaxLogo from "../fornax-logo";
 import { geologica } from "@/app/fonts";
 import styles from '@/app/ui/promptMobile/promptMobile.module.css';
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
-export default function PromptMobile({ onSubmit }) {
+export default function PromptMobile({ onSubmit }: { onSubmit: (pitch: { pitch: string; minutes: string; instructions: string; }) => void; }) {
 
   const [pitch, setPitch] = useState({
     pitch: '',
@@ -13,7 +13,7 @@ export default function PromptMobile({ onSubmit }) {
     instructions: ''
   });
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({ ...pitch, minutes: `Make it ${pitch.minutes} minutes long` });
   };

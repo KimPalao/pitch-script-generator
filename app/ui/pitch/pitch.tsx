@@ -7,7 +7,7 @@ import GeneratingScreen from './generatingScreen';
 import { useState } from 'react';
 import clsx from 'clsx';
 
-export default function Pitch({ pitch = {}, generating = false }: { pitch: Object; generating: boolean; }) {
+export default function Pitch({ pitch = {}, generating = false }: { pitch: { [name: string]: { content: string; time: string; }; }; generating: boolean; }) {
   const cards = ['Introduction', 'Hook', 'Problem Statement', 'Solution', 'Market Opportunity', 'Business Model', 'Traction', 'Go-to-Market Strategy', 'Team', 'Financials and Projections', 'Closing'];
 
   return (

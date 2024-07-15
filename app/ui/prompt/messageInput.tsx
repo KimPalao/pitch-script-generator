@@ -1,10 +1,10 @@
 import styles from './messageInput.module.css';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
-export default function MessageInput({ onSubmit, disabled }) {
+export default function MessageInput({ onSubmit, disabled }: { onSubmit: (message: string) => void; disabled?: boolean; }) {
   const [message, setMessage] = useState('');
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     onSubmit(message);
     setMessage('');
