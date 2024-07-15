@@ -12,6 +12,7 @@ export default function Home() {
   const [generatedPitch, setGeneratedPitch] = useState({});
   const [generating, setGenerating] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [pitchId, setPitchId] = useState('');
 
   const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; file: File; }) => {
     setGenerating(true);
@@ -27,7 +28,8 @@ export default function Home() {
     });
 
     const data = await response.json();
-    setGeneratedPitch(data);
+    setGeneratedPitch(data.response);
+    setPitchId(data.id);
     setGenerating(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 5000);
