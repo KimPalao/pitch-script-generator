@@ -17,7 +17,7 @@ export default function Card({
           }
         </div>
         {content && <div>
-          <span>Copy</span>
+          <span>&#128203;</span>
           <span>Refresh</span>
         </div>}
       </div>

@@ -17,6 +17,19 @@ export default function Pitch({ pitch = {}, generating = false, pitchId = null }
     setShared(true);
   };
 
+  const [copied, setCopied] = useState(false);
+  const copyText = copied ? 'Copied!' : 'Copy';
+  const copyPitch = () => {
+    let text = ``;
+    for (const card of cards) {
+      text += `# ${card}\n\n`;
+      text += `**${pitch[card]?.time}**\n\n`;
+      text += `${pitch[card]?.content}\n\n`;
+    }
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+  };
+
   return (
     <div className={clsx(
       `${styles.pitchContainer} bg-stone-100 md:flex flex-col relative`,
@@ -31,7 +44,7 @@ export default function Pitch({ pitch = {}, generating = false, pitchId = null }
       </div>
       <div className={`${styles.bottomBar} p-4 flex flex-row gap-4 md:hidden fixed bottom-0 w-full bg-white`}>
         <button onClick={shareLink} className="w-1/2 text-2xl rounded-md border-2 border-gray-200 py-1 px-2">{shareText}</button>
-        <button className="w-1/2 text-2xl rounded-md text-white bg-violet-950 py-1 px-2">Copy</button>
+        <button onClick={copyPitch} className="w-1/2 text-2xl rounded-md text-white bg-violet-950 py-1 px-2">{copyText}</button>
       </div>
     </div>
   );
