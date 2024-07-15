@@ -21,3 +21,12 @@
   background: linear-gradient(to right, #EE7299, #8B8EF8);
   transition: all 0.1s;
 }
+
+.loadingBarNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: 500;
+}

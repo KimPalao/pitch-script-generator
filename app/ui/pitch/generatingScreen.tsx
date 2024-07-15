@@ -26,7 +26,8 @@ export default function GeneratingScreen() {
         Generating your pitch script... <br />
         This may take a few seconds.
       </p>
-      <div className={`${styles.loadingBar} rounded-full`}>
+      <div className={`${styles.loadingBar} ${geologica.className} rounded-full relative`}>
+        <div className={`${styles.loadingBarNumber}`}>{loadingBarProgress | 0}%</div>
         <div className={`${styles.loadingBarProgress} rounded-full`} style={{ width: `${loadingBarProgress}%` }}></div>
       </div>
     </div>
