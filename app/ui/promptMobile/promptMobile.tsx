@@ -10,12 +10,20 @@ export default function PromptMobile({ onSubmit }: { onSubmit: (pitch: { pitch: 
   const [pitch, setPitch] = useState({
     pitch: '',
     minutes: 3,
-    instructions: ''
+    instructions: '',
+    file: null,
   });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({ ...pitch, minutes: `Make it ${pitch.minutes} minutes long` });
+  };
+
+  const [filename, setFilename] = useState('');
+
+  const chooseFile = (e: any) => {
+    setFilename(e.target.files[0].name);
+    setPitch(currentPitch => ({ ...currentPitch, file: e.target.files[0] }));
   };
 
   return (
@@ -28,8 +36,9 @@ export default function PromptMobile({ onSubmit }: { onSubmit: (pitch: { pitch: 
 
       <label htmlFor="prompt" className="w-full mt-8">Or upload a pitch deck (Accepts PDF files up to 10MB)</label>
       <div className="flex flex-row w-full">
-        <input type="text" readOnly className="w-4/6 px-4 py-2 rounded-md" placeholder="Fornax Pitch V1.pdf" />
-        <button className="w-2/6 bg-violet-950 rounded-md ms-4 text-white">Upload File</button>
+        <input type="file" readOnly id="pitchDeckFileInput" hidden onChange={chooseFile} />
+        <input type="text" readOnly className="w-4/6 px-4 py-2 rounded-md" placeholder="Fornax Pitch V1.pdf" value={filename} />
+        <label htmlFor="pitchDeckFileInput" className="block w-2/6 bg-violet-950 rounded-md ms-4 text-white text-center leading-10">Upload File</label>
       </div>
       <div className="flex flex-row w-full mt-8">
         <span className="w-4/6 rounded-md text-base/[20px]">Pitch length in minutes (Recommended: 3-5)</span>

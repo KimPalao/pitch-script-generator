@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import { put } from "@vercel/blob";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -6,8 +7,15 @@ const openai = new OpenAI({
 });
 
 export async function POST(request: Request) {
-  const res = await request.json();
-  const { pitch, minutes, instructions } = res;
+  const formData = await request.formData();
+  const pitch = formData.get('pitch');
+  const minutes = formData.get('minutes');
+  const instructions = formData.get('instructions');
+  const file = formData.get('file');
+
+  const blob = await put('test.pdf', file, {
+    access: 'public'
+  });
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",

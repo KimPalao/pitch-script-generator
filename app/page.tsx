@@ -13,14 +13,17 @@ export default function Home() {
   const [generating, setGenerating] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
-  const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; }) => {
+  const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; file: File; }) => {
     setGenerating(true);
+    const formData = new FormData();
+    formData.append('pitch', pitch.pitch);
+    formData.append('minutes', pitch.minutes);
+    formData.append('instructions', pitch.instructions);
+    formData.append('file', pitch.file);
+
     const response = await fetch('/api/prompt', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(pitch)
+      body: formData
     });
 
     const data = await response.json();
