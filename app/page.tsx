@@ -14,13 +14,15 @@ export default function Home() {
   const [showToast, setShowToast] = useState(false);
   const [pitchId, setPitchId] = useState('');
 
-  const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; file: File; }) => {
+  const prompt = async (pitch: { pitch: string; minutes: string; instructions: string; file?: File | null; }) => {
     setGenerating(true);
     const formData = new FormData();
     formData.append('pitch', pitch.pitch);
     formData.append('minutes', pitch.minutes);
     formData.append('instructions', pitch.instructions);
-    formData.append('file', pitch.file);
+    if (pitch.file) {
+      formData.append('file', pitch.file);
+    }
 
     const response = await fetch('/api/prompt', {
       method: 'POST',
@@ -39,7 +41,7 @@ export default function Home() {
     <main>
       <Nav />
       <div className="md:grid grid-cols-2 flex-grow w-full">
-        <Pitch pitch={generatedPitch} generating={generating} id={pitchId} />
+        <Pitch pitch={generatedPitch} generating={generating} pitchId={pitchId} />
         <Prompt onSubmit={prompt} />
         {!Object.keys(generatedPitch).length && !generating &&
           <PromptMobile onSubmit={prompt} />

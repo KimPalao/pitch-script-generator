@@ -1,4 +1,4 @@
-export type Pitch = {
+export type PitchType = {
   id: string;
   pitch: string;
   minutes: string;

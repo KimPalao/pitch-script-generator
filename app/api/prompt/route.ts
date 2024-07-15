@@ -10,17 +10,15 @@ const openai = new OpenAI({
 export async function POST(request: Request) {
   const formData = await request.formData();
 
-  const pitch = formData.get('pitch');
-  const minutes = formData.get('minutes');
-  const instructions = formData.get('instructions');
+  const pitch = formData.get('pitch')?.toString();
+  const minutes = formData.get('minutes')?.toString();
+  const instructions = formData.get('instructions')?.toString();
   const file = formData.get('file');
   const filename = `${Date.now()}.pdf`;
 
-  if (file) {
-    const blob = await put(filename, file, {
-      access: 'public'
-    });
-  }
+  const blob = file ? await put(filename, file, {
+    access: 'public'
+  }) : null;
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -50,14 +48,16 @@ export async function POST(request: Request) {
   });
 
   try {
+    let res = null;
     if (file) {
-      const res = await sql`
+      if (!blob) throw new Error();
+      res = await sql`
         INSERT INTO pitches (pitch, minutes, instructions, file, response) 
         VALUES (${pitch}, ${minutes}, ${instructions}, ${blob.url}, ${response.choices[0].message.content ?? ''})
         RETURNING id
       `;
     } else {
-      const res = await sql`
+      res = await sql`
         INSERT INTO pitches (pitch, minutes, instructions, response) 
         VALUES (${pitch}, ${minutes}, ${instructions}, ${response.choices[0].message.content ?? ''})
         RETURNING id

@@ -5,7 +5,7 @@ import { geologica } from "@/app/fonts";
 import styles from '@/app/ui/promptMobile/promptMobile.module.css';
 import { FormEvent, useState } from "react";
 
-export default function PromptMobile({ onSubmit }: { onSubmit: (pitch: { pitch: string; minutes: string; instructions: string; }) => void; }) {
+export default function PromptMobile({ onSubmit }: { onSubmit: (pitch: { pitch: string; minutes: string; instructions: string; file?: File | null; }) => void; }) {
 
   const [pitch, setPitch] = useState({
     pitch: '',

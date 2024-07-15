@@ -5,7 +5,7 @@ import MessageInput from "./messageInput";
 import { geologica } from "@/app/fonts";
 import { useEffect, useState } from "react";
 
-export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string; minutes: string; instructions: string; }) => void; }) {
+export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string; minutes: string; instructions: string; file?: File | null; }) => Promise<void>; }) {
   const [messages, setMessages] = useState<{ message: string; fromApp: boolean; }[]>([]);
 
   useEffect(() => {
@@ -18,7 +18,8 @@ export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string
   const [pitch, setPitch] = useState({
     pitch: '',
     minutes: '',
-    instructions: ''
+    instructions: '',
+    file: null,
   });
 
   const addMessageAndRespond = (message: string) => {
