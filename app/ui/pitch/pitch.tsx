@@ -20,7 +20,7 @@ export default function Pitch({ pitch = {}, generating = false }: { pitch: Objec
       {generating && <GeneratingScreen />}
       <div className={`p-4 ${styles.innerContainer}`}>
         <h1 className={`text-2xl font-medium mb-4 ${geologica.className}`}>Your Generated Pitch Script</h1>
-        {cards.map(card => <Card title={card} key={card} content={pitch[card]?.content ?? ''} time={pitch[card]?.time ?? ''} />)}
+        {cards.map(card => <Card title={card} key={card} content={pitch[card]?.content} time={pitch[card]?.time} />)}
       </div>
     </div>
   );
