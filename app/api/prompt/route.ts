@@ -36,7 +36,7 @@ export async function POST(request: Request) {
           
           Additional instructions: ${instructions}
           
-          Organise it into the following sections: Introduction, Hook, Problem Statement, Solution, Market Opportunity, Business Model, Traction, Go-to-Market Strategy, Team, Financials and Projects, and Closing.
+          Organise it into the following sections: Introduction, Hook, Problem Statement, Solution, Market Opportunity, Business Model, Traction, Go-to-Market Strategy, Team, Financials and Projections, and Closing.
           
           Include estimated time for each section. Format the time as "<seconds> seconds"
 
