@@ -39,7 +39,7 @@ export default function Home() {
     <main>
       <Nav />
       <div className="md:grid grid-cols-2 flex-grow w-full">
-        <Pitch pitch={generatedPitch} generating={generating} />
+        <Pitch pitch={generatedPitch} generating={generating} id={pitchId} />
         <Prompt onSubmit={prompt} />
         {!Object.keys(generatedPitch).length && !generating &&
           <PromptMobile onSubmit={prompt} />

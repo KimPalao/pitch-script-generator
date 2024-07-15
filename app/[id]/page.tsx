@@ -18,6 +18,6 @@ export default async function Page({ params }: { params: { id: string; }; }) {
   const pitchJson = JSON.parse(pitch.response);
 
   return (
-    <Pitch pitch={pitchJson} />
+    <Pitch pitch={pitchJson} pitchId={id} />
   );
 }
