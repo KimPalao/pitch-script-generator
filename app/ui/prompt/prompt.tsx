@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string; minutes: string; instructions: string; file?: File | null; }) => Promise<void>; }) {
   const [messages, setMessages] = useState<{ message: string; fromApp: boolean; }[]>([]);
+  const [filename, setFilename] = useState('');
 
   useEffect(() => {
     setMessages([{
@@ -21,6 +22,13 @@ export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string
     instructions: '',
     file: null,
   });
+
+  const setFile = (file: File, name: string) => {
+    setFilename(name);
+    setPitch(currentPitch => ({ ...currentPitch, file }));
+    setMessages(currentMessages => [...currentMessages, { message: name, fromApp: false }]);
+    setMessages(currentMessages => [...currentMessages, { message: "We've received your pitch deck! Can you also give us a short description of your pitch?", fromApp: true }]);
+  };
 
   const addMessageAndRespond = (message: string) => {
     setMessages(currentMessages => [...currentMessages, { message, fromApp: false }]);
@@ -71,15 +79,8 @@ export default function Prompt({ onSubmit }: { onSubmit: (pitch: { pitch: string
       <hr className="mb-4" />
       <div className={`${styles.messageContainer} flex-grow`}>
         {messages.map((message, index) => <Message key={index} message={message.message} fromApp={message.fromApp} />)}
-        {/* <Message message="What would you like to pitch about?" fromApp />
-        <Message message="Hello! I am pitching EcoFresh, my eco-friendly packaging startup. We create eco-friendly, biodegradable packaging for the food indusstry. EcoFresh's material decomposes faster, ensuring quicker environmental benefits. It's also competitively priced." />
-        <Message message="Great, what would you like your pitch length to be in minutes? The recommended length for a pitch is 3-5 minutes." fromApp />
-        <Message message="I would like the pitch to be 3 minutes long." />
-        <Message message="Wonderful! Do you have any additional instructions or specifications on tone or structure?" fromApp />
-        <Message message="A friendly business tone would be great. Please use simple words." />
-        <Message message="Thank you for your responses! Allow me to generate your script now." fromApp /> */}
       </div>
-      <MessageInput onSubmit={addMessageAndRespond} />
+      <MessageInput onSubmit={addMessageAndRespond} onFile={setFile} />
     </div>
   );
 }
