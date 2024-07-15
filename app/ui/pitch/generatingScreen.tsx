@@ -18,6 +18,7 @@ export default function GeneratingScreen() {
 
   useEffect(() => {
     setInterval(updateLoadingBar, 100);
+    return () => clearInterval(updateLoadingBar);
   },);
 
   return (

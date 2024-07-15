@@ -11,3 +11,10 @@
 .messageInputContainer input {
   padding-left: 4px;
 }
+
+.textbox {
+  scrollbar-width: thin;
+  max-height: 64px;
+  overflow-y: auto;
+  ;
+}
