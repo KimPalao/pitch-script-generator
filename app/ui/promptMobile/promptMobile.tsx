@@ -26,7 +26,7 @@ export default function PromptMobile({ onSubmit }) {
       <label htmlFor="prompt" className="w-full">What would you like to pitch about?</label>
       <textarea name="prompt" id="prompt" className="w-full rounded-md p-4" placeholder="Ask Fornax AI to generate a pitch script based on your prompt" onChange={e => setPitch(currentPitch => ({ ...currentPitch, pitch: e.target.value }))}></textarea>
 
-      <label htmlFor="prompt" className="w-full mt-8">What would you like to pitch about?</label>
+      <label htmlFor="prompt" className="w-full mt-8">Or upload a pitch deck (Accepts PDF files up to 10MB)</label>
       <div className="flex flex-row w-full">
         <input type="text" readOnly className="w-4/6 px-4 py-2 rounded-md" placeholder="Fornax Pitch V1.pdf" />
         <button className="w-2/6 bg-violet-950 rounded-md ms-4 text-white">Upload File</button>
