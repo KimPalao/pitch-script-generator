@@ -42,10 +42,10 @@ export default function Pitch({ pitch = {}, generating = false, pitchId = null, 
         <h1 className={`text-2xl font-medium mb-4 ${geologica.className}`}>Your Generated Pitch Script</h1>
         {cards.map(card => <Card title={card} key={card} content={pitch[card]?.content} time={pitch[card]?.time} />)}
       </div>
-      <div className={`${styles.bottomBar} p-4 flex flex-row gap-4 md:hidden fixed bottom-0 w-full bg-white`}>
+      {!generating && <div className={`${styles.bottomBar} p-4 flex flex-row gap-4 md:hidden fixed bottom-0 w-full bg-white`}>
         <button onClick={shareLink} className="w-1/2 text-2xl rounded-md border-2 border-gray-200 py-1 px-2">{shareText}</button>
         <button onClick={copyPitch} className="w-1/2 text-2xl rounded-md text-white bg-violet-950 py-1 px-2">{copyText}</button>
-      </div>
+      </div>}
     </div>
   );
 }
